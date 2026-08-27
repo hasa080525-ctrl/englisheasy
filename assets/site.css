@@ -1,0 +1,135 @@
+/* Shared styles for /areas/ landing pages. index.html keeps its own inline
+   <style> untouched - this file only backs the generated area pages. */
+:root{
+  --ink:#1f3d2b;
+  --ink-2:#2b4d38;
+  --paper:#fdf8ee;
+  --paper-2:#ffffff;
+  --gold:#c9a227;
+  --gold-light:#e8cf7a;
+  --cream:#f3ead0;
+  --slate:#5c6b5f;
+  --slate-2:#8b9a8e;
+  --line:#e6ddc4;
+  --line-dark:#33553f;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Noto Serif KR', serif; font-weight:700; letter-spacing:-0.01em;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+img{max-width:100%; display:block;}
+.wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+header{
+  position:sticky; top:0; z-index:100;
+  background:rgba(253,248,238,0.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex; align-items:center; justify-content:space-between; height:76px;}
+.logo{display:flex; align-items:center; gap:10px; font-family:'Noto Serif KR', serif; font-weight:700; font-size:19px; color:var(--ink);}
+.logo-mark{
+  width:36px; height:36px; border-radius:50%;
+  background:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold-light); font-size:14px; font-weight:700;
+  font-family:'Noto Serif KR', serif;
+}
+.nav-cta{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+  background:var(--ink); color:#fff; font-size:13.5px; font-weight:600; line-height:1.2;
+  padding:9px 20px; border:none; letter-spacing:0.02em;
+}
+.nav-cta-num{font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:500; color:var(--gold-light); letter-spacing:0;}
+.nav-cta:hover{background:var(--ink-2);}
+
+.mobile-cta-bar{
+  display:none; position:fixed; left:0; right:0; bottom:0; z-index:200;
+  background:var(--paper-2); border-top:1px solid var(--line);
+  box-shadow:0 -6px 18px rgba(31,61,43,0.12);
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  gap:10px;
+}
+.mobile-cta-bar a, .mobile-cta-bar button{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+  height:48px; font-size:14.5px; font-weight:700; border:none;
+}
+.mobile-cta-call{background:var(--ink); color:#fff;}
+.mobile-cta-kakao{background:#FEE500; color:#191919;}
+.mobile-cta-apply{background:var(--gold); color:var(--ink);}
+
+.breadcrumb{max-width:1180px; margin:0 auto; padding:16px 32px; font-size:12.5px; color:var(--slate-2);}
+.breadcrumb a{color:var(--slate-2);}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{margin:0 6px;}
+
+.subpage-hero{background:var(--ink); color:#fff; padding:56px 0;}
+.subpage-hero h1{font-size:32px; color:#fff; margin-bottom:12px;}
+.subpage-hero p{font-size:15px; color:#c3ccc5;}
+
+section{padding:72px 0;}
+.section-head{max-width:640px; margin-bottom:40px;}
+.section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+.eyebrow-line{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+.section-head.center .eyebrow-line{justify-content:center;}
+.eyebrow-line .bar{width:24px; height:2px; background:var(--gold);}
+.eyebrow-line span{font-size:13px; font-weight:700; color:var(--gold); letter-spacing:0.08em;}
+.section-head h2{font-size:28px; line-height:1.4; color:var(--ink);}
+.section-head p{font-size:15px; color:var(--slate); margin-top:14px;}
+
+.course-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;}
+.course-card{background:var(--paper-2); border:1px solid var(--line); padding:28px 26px;}
+.course-tag{font-size:11.5px; font-weight:700; color:var(--gold); letter-spacing:0.06em; font-family:'JetBrains Mono', monospace; margin-bottom:12px;}
+.course-card h3{font-size:17px; margin-bottom:10px; color:var(--ink);}
+.course-card p{font-size:13.5px; color:var(--slate); line-height:1.7;}
+
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{display:flex; justify-content:space-between; align-items:center; padding:22px 4px; cursor:pointer; font-size:15.5px; font-weight:600; color:var(--ink);}
+.faq-q .plus{font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:18px; transition:transform .2s ease;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.faq-item.open .faq-a{max-height:260px;}
+.faq-a p{padding:0 4px 22px; font-size:14px; color:var(--slate); max-width:640px;}
+
+.cta-section{background:var(--paper-2); border-top:1px solid var(--line); text-align:center;}
+.cta-section h2{font-size:28px; margin-bottom:14px; color:var(--ink);}
+.cta-section p{font-size:15px; color:var(--slate); margin-bottom:26px;}
+.hero-actions{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+.btn-primary{background:var(--gold); color:var(--ink); font-weight:700; font-size:14.5px; padding:15px 28px; border:none; letter-spacing:0.01em;}
+.btn-primary:hover{background:var(--gold-light);}
+.btn-ghost{background:transparent; color:var(--ink); font-weight:600; font-size:14.5px; padding:15px 26px; border:1px solid var(--line-dark);}
+.btn-ghost:hover{border-color:var(--ink);}
+
+footer{background:var(--ink); color:#a9b6ac; padding:40px 0 24px;}
+footer a{color:#a9b6ac;}
+footer a:hover{color:var(--gold-light);}
+footer .wrap p{font-size:12.5px;}
+
+.region-grid a{
+  font-size:13px; color:var(--ink); background:var(--paper-2); border:1px solid var(--line);
+  padding:10px 14px; display:block;
+}
+.region-grid a:hover{border-color:var(--gold); color:var(--gold);}
+
+@media (max-width:900px){
+  body{padding-bottom:70px;}
+  .mobile-cta-bar{display:flex;}
+  section{padding:48px 0;}
+  .course-grid{grid-template-columns:1fr;}
+  .region-grid{grid-template-columns:repeat(2,1fr) !important;}
+}
+@media (max-width:640px){
+  .wrap{padding:0 20px;}
+  .nav{height:64px;}
+  .subpage-hero h1{font-size:25px;}
+  .region-grid{grid-template-columns:1fr !important;}
+}
