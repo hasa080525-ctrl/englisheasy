@@ -264,14 +264,20 @@
 
   /* ---------- Hero ---------- */
   .hero{background:var(--ink); color:#fff; position:relative; overflow:hidden;}
+  .hero::after{
+    content:''; position:absolute; inset:-12px;
+    background:url('/assets/hero-bg.jpg') center/cover no-repeat;
+    filter:blur(5px) brightness(0.5) saturate(1.1);
+    z-index:0;
+  }
   .hero::before{
-    content:''; position:absolute; inset:0;
+    content:''; position:absolute; inset:0; z-index:1;
     background:
       radial-gradient(ellipse 600px 400px at 88% 12%, rgba(201,162,39,0.18), transparent 60%),
       repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 32px);
     pointer-events:none;
   }
-  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; padding:92px 0 80px; align-items:center; position:relative; z-index:1;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; padding:92px 0 80px; align-items:center; position:relative; z-index:2;}
   .hero-eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--gold-light); letter-spacing:0.06em; margin-bottom:20px;}
   .hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--gold-light);}
   .hero h1{font-size:44px; line-height:1.32; color:#fff; margin-bottom:20px;}
