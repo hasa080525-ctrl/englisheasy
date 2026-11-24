@@ -672,6 +672,16 @@
         <button type="button" class="help-pill" data-format="상관없음">상관없음</button>
       </div>
 
+      <div class="help-section-label">배우려는 이유</div>
+      <div class="help-pill-grid" id="helpReasonGrid">
+        <button type="button" class="help-pill" data-reason="학교 내신·수능">학교 내신·수능</button>
+        <button type="button" class="help-pill" data-reason="인증시험(토익·HSK·JLPT 등)">인증시험(토익·HSK·JLPT 등)</button>
+        <button type="button" class="help-pill" data-reason="비즈니스·업무">비즈니스·업무</button>
+        <button type="button" class="help-pill" data-reason="여행">여행</button>
+        <button type="button" class="help-pill" data-reason="유학·이민 준비">유학·이민 준비</button>
+        <button type="button" class="help-pill" data-reason="취미·교양">취미·교양</button>
+      </div>
+
       <div class="help-section-label">연락처</div>
       <div class="help-form-row">
         <div class="help-field"><label>이름 *</label><input type="text" id="hName" placeholder="예: 김민준"></div>
@@ -1288,6 +1298,7 @@ function submitApplyForm(){
 let helpSelectedLanguage = '';
 let helpSelectedWho = '';
 let helpSelectedFormat = '';
+let helpSelectedReason = '';
 
 function openHelpModal(){
   const overlay = document.getElementById('helpModalOverlay');
@@ -1309,6 +1320,7 @@ function backToHelpStep1(){
   if(step3) step3.style.display = 'none';
   helpSelectedWho = '';
   helpSelectedFormat = '';
+  helpSelectedReason = '';
   document.querySelectorAll('.help-pill').forEach(function(p){ p.classList.remove('selected'); });
 }
 
@@ -1340,6 +1352,13 @@ document.querySelectorAll('#helpFormatGrid .help-pill').forEach(function(pill){
     helpSelectedFormat = pill.getAttribute('data-format');
   });
 });
+document.querySelectorAll('#helpReasonGrid .help-pill').forEach(function(pill){
+  pill.addEventListener('click', function(){
+    document.querySelectorAll('#helpReasonGrid .help-pill').forEach(function(p){ p.classList.remove('selected'); });
+    pill.classList.add('selected');
+    helpSelectedReason = pill.getAttribute('data-reason');
+  });
+});
 
 function submitHelpForm(){
   const name = document.getElementById('hName');
@@ -1356,10 +1375,14 @@ function submitHelpForm(){
     alert('수업 방식을 선택해주세요.');
     return;
   }
+  if(!helpSelectedReason){
+    alert('배우려는 이유를 선택해주세요.');
+    return;
+  }
 
   fetch('https://script.google.com/macros/s/AKfycbwOqTTLkqZ_frFyT6N0QcjYZT3jsG0puhq9wRmrQSPxhFgn0fXET3AoGVj4PiHMNHcg/exec', {
     method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify({ site: '잉글리시이지', name: name.value.trim(), phone: phone.value.trim(), grade: helpSelectedWho, subject: helpSelectedLanguage, message: '[수업방식: ' + helpSelectedFormat + ']' })
+    body: JSON.stringify({ site: '잉글리시이지', name: name.value.trim(), phone: phone.value.trim(), grade: helpSelectedWho, subject: helpSelectedLanguage, message: '[수업방식: ' + helpSelectedFormat + '] [이유: ' + helpSelectedReason + ']' })
   }).catch(function(err){ console.error('구글시트 전송 실패:', err); });
 
   const step2 = document.getElementById('helpStep2');
